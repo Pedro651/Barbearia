@@ -98,35 +98,43 @@ async listProducts(paginationtsDto: PaginationsProductDto) {
 
 
 
-    async deleteProduct(id:string, tokenPayload: PAyloadTOkenDto){
+    
+async deleteProduct(
+    id: string,
+    tokenPayload: PAyloadTOkenDto
+) {
+    // Verifica se é administrador
     if (tokenPayload.role !== 'ADMIN') {
         throw new ForbiddenException(
             'Somente administradores podem excluir'
         );
     }
 
+    // Procura o produto
     const product = await this.prisma.product.findUnique({
-        where:{
-            id:id,
-            
+        where: {
+            id: id
         }
-    })
-    
-    if(!product){
-    throw new HttpException("Produto não encontrado", HttpStatus.NOT_FOUND)
-    }
-    
-    if(product.user_id !== tokenPayload.sub){
-    throw new HttpException("Acesso negado", HttpStatus.FORBIDDEN)
+    });
+
+    if (!product) {
+        throw new NotFoundException(
+            'Produto não encontrado'
+        );
     }
 
+    // Exclui o produto
     await this.prisma.product.delete({
-        where:{
-            id: product.id
+        where: {
+            id: id
         }
-    })
-    return {message :" produto deletado com sucesso"};
-    }
+    });
+
+    return {
+        message: 'Produto deletado com sucesso'
+    };
+}
+
 
     async updateProduct(
     id: string,
