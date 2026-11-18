@@ -9,7 +9,7 @@ const services = [
     title: "CORTE",
     description:
       "Cortes feitos sob medida para valorizar seu estilo e sua personalidade.",
-    image: "/images/corte-infantil.jpg",
+    image: "/img/corte.jpeg",
     alt: "Corte de cabelo masculino feito com precisão",
   },
   {
@@ -17,7 +17,7 @@ const services = [
     title: "BARBA",
     description:
       "Acabamento impecável, cuidado nos detalhes e respeito à sua identidade.",
-    image: "/images/barba.jpg",
+    image: "/img/barba.jpeg",
     alt: "Barbeiro fazendo a barba de um cliente",
   },
   {
@@ -25,7 +25,7 @@ const services = [
     title: "EXPERIÊNCIA",
     description:
       "Um ambiente pensado para você relaxar e sair com sua melhor versão.",
-    image: "/images/barbearia.jpg",
+    image: "/img/sala.jpeg",
     alt: "Interior da Soares Barbearia",
   },
 ];
@@ -79,30 +79,14 @@ export default function Home() {
 
         <div className="relative mx-auto h-[360px] w-full max-w-[520px] overflow-hidden border border-neutral-800 sm:h-[460px] lg:h-[500px]">
           <img
-            src="/images/barbeiro.jpg"
+            src="/img/gr.jpeg"
             alt="Barbeiro Soares trabalhando"
             className="absolute inset-0 h-full w-full object-cover"
           />
 
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
-          <span className="absolute inset-x-0 top-0 bg-black/30 px-2 py-3 text-center text-[10px] font-bold tracking-widest sm:text-xs">
-            11 DE MAIO — DIA DO BARBEIRO
-          </span>
-
-          <div className="absolute inset-x-3 top-1/2 -translate-y-1/2 text-center">
-            <h2 className="text-xl font-black uppercase sm:text-3xl">
-              SER <span className="text-[#e8c547]">BARBEIRO</span> É ...
-            </h2>
-          </div>
-
-          <Link
-            href="/sobre"
-            aria-label="Conheça a Soares Barbearia"
-            className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl text-black transition hover:bg-[#e8c547]"
-          >
-            ↗
-          </Link>
+        
         </div>
       </section>
 
@@ -151,45 +135,40 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
             {services.map((service, index) => (
-              <article key={service.title} className="group min-w-0">
-                <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
-                  <img
-                    src={service.image}
-                    alt={service.alt}
-                    loading="lazy"
-                    className={`h-full w-full object-cover transition duration-700 group-hover:scale-105 ${
-                      index === 2 ? "grayscale" : ""
-                    }`}
-                  />
+            <article key={service.title} className="group min-w-0">
+              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
+                <img
+                  src={service.image}
+                  alt={service.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/5" />
 
-                  <span className="absolute left-4 top-4 rounded-full bg-[#e8c547] px-3 py-1.5 text-[10px] font-black uppercase leading-none tracking-wide text-black sm:left-5 sm:top-5">
-                    {service.label}
-                  </span>
+                <span className="absolute left-4 top-4 rounded-full bg-[#e8c547] px-3 py-1.5 text-[10px] font-black uppercase leading-none tracking-wide text-black sm:left-5 sm:top-5">
+                  {service.label}
+                </span>
 
-                  <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/70 text-lg text-white transition group-hover:border-[#e8c547] group-hover:bg-[#e8c547] group-hover:text-black">
-                    ↗
+              </div>
+
+              <div className="pt-4 sm:pt-5">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <h3 className="text-3xl font-black uppercase leading-none tracking-[-0.05em] sm:text-4xl lg:text-3xl xl:text-4xl">
+                    {service.title}
+                  </h3>
+
+                  <span className="text-xs font-medium text-neutral-400">
+                    0{index + 1}
                   </span>
                 </div>
 
-                <div className="pt-4 sm:pt-5">
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <h3 className="text-3xl font-black uppercase leading-none tracking-[-0.05em] sm:text-4xl lg:text-3xl xl:text-4xl">
-                      {service.title}
-                    </h3>
-
-                    <span className="text-xs font-medium text-neutral-400">
-                      0{index + 1}
-                    </span>
-                  </div>
-
-                  <p className="max-w-sm text-sm leading-6 text-neutral-600">
-                    {service.description}
-                  </p>
-                </div>
-              </article>
-            ))}
+                <p className="max-w-sm text-sm leading-6 text-neutral-600">
+                  {service.description}
+                </p>
+              </div>
+            </article>
+          ))}
           </div>
 
           <div className="mt-12 flex flex-col items-start justify-between gap-5 border-t border-neutral-200 pt-7 sm:mt-16 sm:flex-row sm:items-center">
@@ -240,9 +219,12 @@ export default function Home() {
           </div>
 
           <div className="relative order-1 mx-auto h-[360px] w-full max-w-[520px] overflow-hidden rounded-lg border border-neutral-800 sm:h-[460px] md:order-2 lg:h-[500px]">
-            <img
-              src="/images/produtos.jpg"
-              alt="Linha de produtos Soares Barbearia"
+            <video
+              src="/img/video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />

@@ -5,9 +5,7 @@ export class CreateProductDto{
     @IsString()
     @IsNotEmpty({message:"Não pode deixar vazio"})
     name:string
-    @IsString()
-    @IsNotEmpty({message:"Não pode deixar vazio"})
-    avatar:string
+
     @IsString()
     @IsNotEmpty({message:"Não pode deixar vazio"})
     description:string

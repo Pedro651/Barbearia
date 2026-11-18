@@ -146,49 +146,80 @@ const router = useRouter();
       </div>
 
       {/* Links do celular */}
-      {menuAberto && (
-        <nav className="flex flex-col gap-1 border-t border-neutral-200 bg-white px-4 py-3 text-black md:hidden">
-          <Link
-            href="/#servicos"
-            onClick={fecharMenu}
-            className="py-3 text-sm font-semibold"
-          >
-            Serviços
-          </Link>
+{menuAberto && (
+  <nav className="flex flex-col border-t border-neutral-200 bg-white px-4 py-3 text-black md:hidden">
 
-          <Link
-            href="/#produtos"
-            onClick={fecharMenu}
-            className="py-3 text-sm font-semibold"
-          >
-            Produtos
-          </Link>
+    {/* Menu principal */}
+    <Link
+      href="/#servicos"
+      onClick={fecharMenu}
+      className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+    >
+      Serviços
+    </Link>
 
-          <Link
-            href="/#equipe"
-            onClick={fecharMenu}
-            className="py-3 text-sm font-semibold"
-          >
-            Equipe
-          </Link>
+    <Link
+      href="/#produtos"
+      onClick={fecharMenu}
+      className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+    >
+      Produtos
+    </Link>
 
-          <Link
-            href="/#localizacao"
-            onClick={fecharMenu}
-            className="py-3 text-sm font-semibold"
-          >
-            Visite
-          </Link>
+    <Link
+      href="/#equipe"
+      onClick={fecharMenu}
+      className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+    >
+      Equipe
+    </Link>
 
-          <Link
-            href="/login"
-            onClick={fecharMenu}
-            className="py-3 text-sm font-semibold sm:hidden"
-          >
-            Entrar
-          </Link>
-        </nav>
-      )}
+    <Link
+      href="/#localizacao"
+      onClick={fecharMenu}
+      className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+    >
+      Visite
+    </Link>
+
+    <Link
+      href="/login"
+      onClick={fecharMenu}
+      className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700 sm:hidden"
+    >
+      Entrar
+    </Link>
+
+    {/* Menu administrativo */}
+    {montado && user?.role === "ADMIN" && (
+      <div className="mt-2 flex flex-col border-t border-neutral-200 pt-2">
+        <Link
+          href="/pedidos"
+          onClick={fecharMenu}
+          className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+        >
+          Pedidos
+        </Link>
+
+        <Link
+          href="/servicos"
+          onClick={fecharMenu}
+          className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+        >
+          Serviços
+        </Link>
+
+        <Link
+          href="/agenda"
+          onClick={fecharMenu}
+          className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+        >
+          Agenda
+        </Link>
+      </div>
+    )}
+  </nav>
+)}
     </header>
   );
 }
