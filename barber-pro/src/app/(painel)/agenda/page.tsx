@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 type Servico = {
   id: string;
   name: string;
+  price: number | string;
 };
 
 type Barbeiro = {
@@ -68,6 +69,7 @@ export default function GerenciarAgenda() {
   const [horarios, setHorarios] = useState<Horario[]>([]);
 
   const [nome, setNome] = useState("");
+  const [preco, setPreco] = useState("");
   const [editandoId, setEditandoId] = useState<string | null>(null);
 
   const [dataSelecionada, setDataSelecionada] = useState("");
@@ -133,46 +135,51 @@ export default function GerenciarAgenda() {
       return;
     }
 
+    if (
+      aba === "servicos" &&
+      (preco.trim() === "" || !Number.isFinite(Number(preco)) || Number(preco) < 0)
+    ) {
+      mostrarMensagem("Informe um preço válido.");
+      return;
+    }
+
     setSalvando(true);
 
     try {
-      const endpoint =
-        aba === "servicos" ? "/servicos" : "/cortes";
+      const endpoint = aba === "servicos" ? "/servicos" : "/cortes";
 
-      const rotaCriar =
-        aba === "servicos" ? "/server" : "/barbeiroo";
+      const rotaCriar = aba === "servicos" ? "/server" : "/barbeiroo";
+
+      const corpo =
+        aba === "servicos"
+          ? {
+              name: nome.trim(),
+              price: preco,
+            }
+          : {
+              name: nome.trim(),
+            };
+
+      if (editandoId) {
+        await requisicao(`${endpoint}/${editandoId}`, {
+          method: "PATCH",
+          body: JSON.stringify(corpo),
+        });
+      } else {
+        await requisicao(`${endpoint}${rotaCriar}`, {
+          method: "POST",
+          body: JSON.stringify(corpo),
+        });
+      }
 
       if (aba === "servicos") {
-        if (editandoId) {
-          await requisicao(`${endpoint}/${editandoId}`, {
-            method: "PATCH",
-            body: JSON.stringify({ name: nome.trim() }),
-          });
-        } else {
-          await requisicao(`${endpoint}${rotaCriar}`, {
-            method: "POST",
-            body: JSON.stringify({ name: nome.trim() }),
-          });
-        }
-
         await carregarServicos();
       } else {
-        if (editandoId) {
-          await requisicao(`${endpoint}/${editandoId}`, {
-            method: "PATCH",
-            body: JSON.stringify({ name: nome.trim() }),
-          });
-        } else {
-          await requisicao(`${endpoint}${rotaCriar}`, {
-            method: "POST",
-            body: JSON.stringify({ name: nome.trim() }),
-          });
-        }
-
         await carregarBarbeiros();
       }
 
       setNome("");
+      setPreco("");
       setEditandoId(null);
 
       mostrarMensagem(
@@ -192,6 +199,12 @@ export default function GerenciarAgenda() {
   function editarCadastro(item: Servico | Barbeiro) {
     setNome(item.name);
     setEditandoId(item.id);
+
+    if ("price" in item) {
+      setPreco(String(item.price));
+    } else {
+      setPreco("");
+    }
   }
 
   // EXCLUIR SERVIÇO OU BARBEIRO
@@ -200,8 +213,7 @@ export default function GerenciarAgenda() {
     if (!window.confirm("Deseja realmente excluir este registro?")) return;
 
     try {
-      const endpoint =
-        aba === "servicos" ? "/servicos" : "/cortes";
+      const endpoint = aba === "servicos" ? "/servicos" : "/cortes";
 
       await requisicao(`${endpoint}/${id}`, {
         method: "DELETE",
@@ -216,6 +228,7 @@ export default function GerenciarAgenda() {
       if (editandoId === id) {
         setEditandoId(null);
         setNome("");
+        setPreco("");
       }
 
       mostrarMensagem("Registro excluído com sucesso!");
@@ -274,6 +287,7 @@ export default function GerenciarAgenda() {
       await carregarHorarios();
 
       setHoraEditando(null);
+
       mostrarMensagem(
         horaEditando
           ? "Horário atualizado!"
@@ -379,6 +393,7 @@ export default function GerenciarAgenda() {
               onClick={() => {
                 setAba(item.id as Aba);
                 setNome("");
+                setPreco("");
                 setBusca("");
                 setEditandoId(null);
                 setHoraEditando(null);
@@ -423,6 +438,24 @@ export default function GerenciarAgenda() {
                 className="h-12 w-full rounded-lg border border-neutral-300 px-4 text-sm outline-none focus:border-[#d4af37]"
               />
 
+              {aba === "servicos" && (
+                <>
+                  <label className="mb-2 mt-5 block text-xs font-bold uppercase tracking-wide">
+                    Preço do serviço
+                  </label>
+
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value={preco}
+                    onChange={(event) => setPreco(event.target.value)}
+                    placeholder="Ex: 35.00"
+                    className="h-12 w-full rounded-lg border border-neutral-300 px-4 text-sm outline-none focus:border-[#d4af37]"
+                  />
+                </>
+              )}
+
               <button
                 type="button"
                 disabled={salvando}
@@ -442,6 +475,7 @@ export default function GerenciarAgenda() {
                   onClick={() => {
                     setEditandoId(null);
                     setNome("");
+                    setPreco("");
                   }}
                   className="mt-3 w-full text-xs font-bold uppercase text-neutral-500 hover:text-black"
                 >
@@ -482,7 +516,20 @@ export default function GerenciarAgenda() {
                       key={item.id}
                       className="flex flex-col justify-between gap-4 rounded-xl border border-neutral-200 p-5 sm:flex-row sm:items-center"
                     >
-                      <span className="text-sm font-bold">{item.name}</span>
+                      <div>
+                        <span className="text-sm font-bold">
+                          {item.name}
+                        </span>
+
+                        {"price" in item && (
+                          <p className="mt-1 text-sm font-semibold text-[#a88413]">
+                            {Number(item.price).toLocaleString("pt-BR", {
+                              style: "currency",
+                              currency: "BRL",
+                            })}
+                          </p>
+                        )}
+                      </div>
 
                       <div className="flex gap-4">
                         <button

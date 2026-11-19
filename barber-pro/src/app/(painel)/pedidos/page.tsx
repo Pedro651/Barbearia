@@ -10,6 +10,7 @@ type Agendamento = {
   cliente: string;
   email: string;
   servico: string;
+  preco: number | string | null;
   barbeiro: string;
   data: string;
   horario: string;
@@ -19,6 +20,7 @@ type Agendamento = {
 type RelacaoAPI = {
   id: string;
   name: string;
+  price?: number | string;
 };
 
 type AgendamentoAPI = {
@@ -50,6 +52,23 @@ function formatarData(data: string) {
   return `${dia}/${mes}/${ano}`;
 }
 
+function formatarPreco(preco: number | string | null | undefined) {
+  if (preco === null || preco === undefined || preco === "") {
+    return "Não informado";
+  }
+
+  const valor = Number(preco);
+
+  if (Number.isNaN(valor)) {
+    return "Não informado";
+  }
+
+  return valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
+
 function obterNome(valor: string | RelacaoAPI | null | undefined) {
   if (!valor) return "Não informado";
 
@@ -58,6 +77,14 @@ function obterNome(valor: string | RelacaoAPI | null | undefined) {
   }
 
   return valor.name ?? "Não informado";
+}
+
+function obterPreco(valor: string | RelacaoAPI | null | undefined) {
+  if (!valor || typeof valor === "string") {
+    return null;
+  }
+
+  return valor.price ?? null;
 }
 
 export default function AdminPage() {
@@ -100,8 +127,9 @@ export default function AdminPage() {
           cliente: item.user?.name ?? "Cliente",
           email: item.user?.email ?? "",
 
-          // Converte os relacionamentos em nomes.
           servico: obterNome(item.servico),
+          preco: obterPreco(item.servico),
+
           barbeiro: obterNome(item.barbeiro),
 
           data: String(item.date ?? "").slice(0, 10),
@@ -465,12 +493,13 @@ export default function AdminPage() {
 
           <div className="mt-6 overflow-hidden rounded-xl border border-neutral-200">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[950px] border-collapse text-left">
+              <table className="w-full min-w-[1050px] border-collapse text-left">
                 <thead>
                   <tr className="border-b border-neutral-200 bg-[#fafafa]">
                     {[
                       "Cliente",
                       "Serviço",
+                      "Preço",
                       "Barbeiro",
                       "Data",
                       "Horário",
@@ -491,7 +520,7 @@ export default function AdminPage() {
                   {carregando ? (
                     <tr>
                       <td
-                        colSpan={7}
+                        colSpan={8}
                         className="px-5 py-16 text-center text-sm text-neutral-500"
                       >
                         Carregando agendamentos...
@@ -499,7 +528,7 @@ export default function AdminPage() {
                     </tr>
                   ) : agendamentosFiltrados.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="px-5 py-16 text-center">
+                      <td colSpan={8} className="px-5 py-16 text-center">
                         <p className="text-sm font-bold uppercase tracking-wide">
                           Nenhum agendamento encontrado
                         </p>
@@ -527,6 +556,10 @@ export default function AdminPage() {
 
                         <td className="px-5 py-5 text-sm">
                           {agendamento.servico}
+                        </td>
+
+                        <td className="px-5 py-5 text-sm font-bold text-[#a88413]">
+                          {formatarPreco(agendamento.preco)}
                         </td>
 
                         <td className="px-5 py-5 text-sm">
@@ -633,22 +666,55 @@ export default function AdminPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-5">
-                {[
-                  ["Serviço", agendamentoSelecionado.servico],
-                  ["Barbeiro", agendamentoSelecionado.barbeiro],
-                  ["Data", formatarData(agendamentoSelecionado.data)],
-                  ["Horário", agendamentoSelecionado.horario],
-                ].map(([titulo, valor]) => (
-                  <div key={titulo}>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400">
-                      {titulo}
-                    </p>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400">
+                    Serviço
+                  </p>
 
-                    <p className="mt-1 text-sm font-semibold">
-                      {valor}
-                    </p>
-                  </div>
-                ))}
+                  <p className="mt-1 text-sm font-semibold">
+                    {agendamentoSelecionado.servico}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400">
+                    Preço
+                  </p>
+
+                  <p className="mt-1 text-sm font-bold text-[#a88413]">
+                    {formatarPreco(agendamentoSelecionado.preco)}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400">
+                    Barbeiro
+                  </p>
+
+                  <p className="mt-1 text-sm font-semibold">
+                    {agendamentoSelecionado.barbeiro}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400">
+                    Data
+                  </p>
+
+                  <p className="mt-1 text-sm font-semibold">
+                    {formatarData(agendamentoSelecionado.data)}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-400">
+                    Horário
+                  </p>
+
+                  <p className="mt-1 text-sm font-semibold">
+                    {agendamentoSelecionado.horario}
+                  </p>
+                </div>
               </div>
 
               <div className="border-t border-neutral-200 pt-5">

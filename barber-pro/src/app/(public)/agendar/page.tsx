@@ -10,6 +10,7 @@ import { AuthContext } from "@/context/AuthContext";
 type Service = {
   id: string;
   name: string;
+  price: string;
 };
 
 type Barber = {
@@ -58,7 +59,8 @@ export default function Agendar() {
     }
   }, [isAuthenticated, router]);
 
-  // Busca serviços, barbeiros e horários
+  // BUSCAR SERVIÇOS, BARBEIROS E HORÁRIOS
+
   useEffect(() => {
     async function buscarDados() {
       try {
@@ -103,18 +105,25 @@ export default function Agendar() {
         const horarios = await resHorarios.json();
 
         setServicesList(
-          Array.isArray(servicos) ? servicos : servicos.data ?? []
+          Array.isArray(servicos)
+            ? servicos
+            : servicos.data ?? []
         );
 
         setTeamList(
-          Array.isArray(barbeiros) ? barbeiros : barbeiros.data ?? []
+          Array.isArray(barbeiros)
+            ? barbeiros
+            : barbeiros.data ?? []
         );
 
         setAvailableTimes(
-          Array.isArray(horarios) ? horarios : horarios.data ?? []
+          Array.isArray(horarios)
+            ? horarios
+            : horarios.data ?? []
         );
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
+
         setErro(
           "Não foi possível carregar os serviços, barbeiros e horários."
         );
@@ -132,13 +141,15 @@ export default function Agendar() {
     return null;
   }
 
-  // Filtra horários pela data escolhida
+  // FILTRAR HORÁRIOS PELA DATA ESCOLHIDA
+
   const horariosDaData = availableTimes.filter(
     (horario) =>
       horario.date?.slice(0, 10) === selectedDate
   );
 
-  // Finaliza o agendamento
+  // FINALIZAR AGENDAMENTO
+
   async function handleFinish() {
     if (
       !selectedService ||
@@ -210,6 +221,8 @@ export default function Agendar() {
     <main className="min-h-screen bg-white text-black flex flex-col justify-between px-5 py-10 sm:px-10 lg:px-16">
       <div className="mx-auto w-full max-w-[1440px]">
 
+        {/* CABEÇALHO */}
+
         <div className="flex justify-between items-center mb-6">
           <Link
             href="/"
@@ -222,6 +235,8 @@ export default function Agendar() {
             SOARES BARBEARIA
           </span>
         </div>
+
+        {/* TÍTULO */}
 
         <div className="flex flex-col items-start mb-8">
           <span className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
@@ -254,6 +269,8 @@ export default function Agendar() {
           </div>
         ) : (
           <>
+            {/* ETAPAS */}
+
             <div className="border-t border-b border-neutral-200 py-4 mb-12">
               <div className="flex flex-wrap items-center gap-6 sm:gap-10">
 
@@ -271,6 +288,7 @@ export default function Agendar() {
                   >
                     1
                   </span>
+
                   <span className="text-xs font-bold uppercase tracking-wider">
                     Serviço
                   </span>
@@ -295,6 +313,7 @@ export default function Agendar() {
                   >
                     2
                   </span>
+
                   <span className="text-xs font-bold uppercase tracking-wider">
                     Barbeiro
                   </span>
@@ -319,6 +338,7 @@ export default function Agendar() {
                   >
                     3
                   </span>
+
                   <span className="text-xs font-bold uppercase tracking-wider">
                     Data e Horário
                   </span>
@@ -330,6 +350,7 @@ export default function Agendar() {
             <div className="mb-16">
 
               {/* ETAPA 1: SERVIÇO */}
+
               {step === 1 && (
                 <section>
                   <h2 className="text-2xl font-black uppercase tracking-tight mb-6 sm:text-3xl">
@@ -361,9 +382,31 @@ export default function Agendar() {
                                 : "border-neutral-200 bg-neutral-50 hover:border-neutral-400 hover:bg-neutral-100 text-black"
                             }`}
                           >
-                            <span className="text-sm font-black uppercase tracking-wide">
-                              {service.name}
-                            </span>
+                            <div>
+                              <span className="text-sm font-black uppercase tracking-wide">
+                                {service.name}
+                              </span>
+
+                              <p
+                                className={`mt-2 text-base font-bold ${
+                                  isSelected
+                                    ? "text-[#d4af37]"
+                                    : "text-[#a88413]"
+                                }`}
+                              >
+                                {service.price !== undefined &&
+                                service.price !== null &&
+                                service.price !== ""
+                                  ? Number(service.price).toLocaleString(
+                                      "pt-BR",
+                                      {
+                                        style: "currency",
+                                        currency: "BRL",
+                                      }
+                                    )
+                                  : "Preço não informado"}
+                              </p>
+                            </div>
 
                             <span
                               className={`text-xs font-bold ${
@@ -383,6 +426,7 @@ export default function Agendar() {
               )}
 
               {/* ETAPA 2: BARBEIRO */}
+
               {step === 2 && (
                 <section>
                   <div className="flex items-center justify-between mb-6">
@@ -446,6 +490,7 @@ export default function Agendar() {
               )}
 
               {/* ETAPA 3: DATA E HORÁRIO */}
+
               {step === 3 && (
                 <section>
                   <div className="flex items-center justify-between mb-6">
@@ -551,7 +596,10 @@ export default function Agendar() {
                       }
                       onClick={handleFinish}
                       className={`inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-full px-8 text-xs font-black uppercase tracking-wide transition ${
-                        selectedDate && selectedTime && selectedHorarioId && !salvando
+                        selectedDate &&
+                        selectedTime &&
+                        selectedHorarioId &&
+                        !salvando
                           ? "bg-[#d4af37] text-black hover:bg-black hover:text-white cursor-pointer"
                           : "bg-neutral-200 text-neutral-400 cursor-not-allowed"
                       }`}
@@ -568,6 +616,8 @@ export default function Agendar() {
           </>
         )}
       </div>
+
+      {/* RODAPÉ */}
 
       <footer className="mx-auto w-full max-w-[1440px] border-t border-neutral-200 pt-6 text-center text-xs text-neutral-500">
         © Soares Barbearia. Estilo, precisão e cuidado em cada detalhe.

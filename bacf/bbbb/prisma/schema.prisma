@@ -94,6 +94,7 @@ model Product{
 model Servico {
   id        String        @id @default(uuid())
   name      String
+  price     String        @default("0")
   active    Boolean       @default(true)
   createdAt DateTime      @default(now())
   agendamentos ServicoAgendado[]

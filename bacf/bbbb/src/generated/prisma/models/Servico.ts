@@ -27,6 +27,7 @@ export type AggregateServico = {
 export type ServicoMinAggregateOutputType = {
   id: string | null
   name: string | null
+  price: string | null
   active: boolean | null
   createdAt: Date | null
   user_id: string | null
@@ -35,6 +36,7 @@ export type ServicoMinAggregateOutputType = {
 export type ServicoMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  price: string | null
   active: boolean | null
   createdAt: Date | null
   user_id: string | null
@@ -43,6 +45,7 @@ export type ServicoMaxAggregateOutputType = {
 export type ServicoCountAggregateOutputType = {
   id: number
   name: number
+  price: number
   active: number
   createdAt: number
   user_id: number
@@ -53,6 +56,7 @@ export type ServicoCountAggregateOutputType = {
 export type ServicoMinAggregateInputType = {
   id?: true
   name?: true
+  price?: true
   active?: true
   createdAt?: true
   user_id?: true
@@ -61,6 +65,7 @@ export type ServicoMinAggregateInputType = {
 export type ServicoMaxAggregateInputType = {
   id?: true
   name?: true
+  price?: true
   active?: true
   createdAt?: true
   user_id?: true
@@ -69,6 +74,7 @@ export type ServicoMaxAggregateInputType = {
 export type ServicoCountAggregateInputType = {
   id?: true
   name?: true
+  price?: true
   active?: true
   createdAt?: true
   user_id?: true
@@ -150,6 +156,7 @@ export type ServicoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type ServicoGroupByOutputType = {
   id: string
   name: string
+  price: string
   active: boolean
   createdAt: Date
   user_id: string
@@ -179,6 +186,7 @@ export type ServicoWhereInput = {
   NOT?: Prisma.ServicoWhereInput | Prisma.ServicoWhereInput[]
   id?: Prisma.StringFilter<"Servico"> | string
   name?: Prisma.StringFilter<"Servico"> | string
+  price?: Prisma.StringFilter<"Servico"> | string
   active?: Prisma.BoolFilter<"Servico"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Servico"> | Date | string
   user_id?: Prisma.StringFilter<"Servico"> | string
@@ -189,6 +197,7 @@ export type ServicoWhereInput = {
 export type ServicoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
@@ -202,6 +211,7 @@ export type ServicoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ServicoWhereInput[]
   NOT?: Prisma.ServicoWhereInput | Prisma.ServicoWhereInput[]
   name?: Prisma.StringFilter<"Servico"> | string
+  price?: Prisma.StringFilter<"Servico"> | string
   active?: Prisma.BoolFilter<"Servico"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Servico"> | Date | string
   user_id?: Prisma.StringFilter<"Servico"> | string
@@ -212,6 +222,7 @@ export type ServicoWhereUniqueInput = Prisma.AtLeast<{
 export type ServicoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
@@ -226,6 +237,7 @@ export type ServicoScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ServicoScalarWhereWithAggregatesInput | Prisma.ServicoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Servico"> | string
   name?: Prisma.StringWithAggregatesFilter<"Servico"> | string
+  price?: Prisma.StringWithAggregatesFilter<"Servico"> | string
   active?: Prisma.BoolWithAggregatesFilter<"Servico"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Servico"> | Date | string
   user_id?: Prisma.StringWithAggregatesFilter<"Servico"> | string
@@ -234,6 +246,7 @@ export type ServicoScalarWhereWithAggregatesInput = {
 export type ServicoCreateInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   agendamentos?: Prisma.ServicoAgendadoCreateNestedManyWithoutServicoInput
@@ -243,6 +256,7 @@ export type ServicoCreateInput = {
 export type ServicoUncheckedCreateInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   user_id: string
@@ -252,6 +266,7 @@ export type ServicoUncheckedCreateInput = {
 export type ServicoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agendamentos?: Prisma.ServicoAgendadoUpdateManyWithoutServicoNestedInput
@@ -261,6 +276,7 @@ export type ServicoUpdateInput = {
 export type ServicoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -270,6 +286,7 @@ export type ServicoUncheckedUpdateInput = {
 export type ServicoCreateManyInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   user_id: string
@@ -278,6 +295,7 @@ export type ServicoCreateManyInput = {
 export type ServicoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -285,6 +303,7 @@ export type ServicoUpdateManyMutationInput = {
 export type ServicoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -308,6 +327,7 @@ export type ServicoScalarRelationFilter = {
 export type ServicoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
@@ -316,6 +336,7 @@ export type ServicoCountOrderByAggregateInput = {
 export type ServicoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
@@ -324,6 +345,7 @@ export type ServicoMaxOrderByAggregateInput = {
 export type ServicoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
@@ -388,6 +410,7 @@ export type ServicoUpdateOneRequiredWithoutAgendamentosNestedInput = {
 export type ServicoCreateWithoutUserInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   agendamentos?: Prisma.ServicoAgendadoCreateNestedManyWithoutServicoInput
@@ -396,6 +419,7 @@ export type ServicoCreateWithoutUserInput = {
 export type ServicoUncheckedCreateWithoutUserInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   agendamentos?: Prisma.ServicoAgendadoUncheckedCreateNestedManyWithoutServicoInput
@@ -433,6 +457,7 @@ export type ServicoScalarWhereInput = {
   NOT?: Prisma.ServicoScalarWhereInput | Prisma.ServicoScalarWhereInput[]
   id?: Prisma.StringFilter<"Servico"> | string
   name?: Prisma.StringFilter<"Servico"> | string
+  price?: Prisma.StringFilter<"Servico"> | string
   active?: Prisma.BoolFilter<"Servico"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Servico"> | Date | string
   user_id?: Prisma.StringFilter<"Servico"> | string
@@ -441,6 +466,7 @@ export type ServicoScalarWhereInput = {
 export type ServicoCreateWithoutAgendamentosInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutServicoInput
@@ -449,6 +475,7 @@ export type ServicoCreateWithoutAgendamentosInput = {
 export type ServicoUncheckedCreateWithoutAgendamentosInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
   user_id: string
@@ -473,6 +500,7 @@ export type ServicoUpdateToOneWithWhereWithoutAgendamentosInput = {
 export type ServicoUpdateWithoutAgendamentosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutServicoNestedInput
@@ -481,6 +509,7 @@ export type ServicoUpdateWithoutAgendamentosInput = {
 export type ServicoUncheckedUpdateWithoutAgendamentosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -489,6 +518,7 @@ export type ServicoUncheckedUpdateWithoutAgendamentosInput = {
 export type ServicoCreateManyUserInput = {
   id?: string
   name: string
+  price?: string
   active?: boolean
   createdAt?: Date | string
 }
@@ -496,6 +526,7 @@ export type ServicoCreateManyUserInput = {
 export type ServicoUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agendamentos?: Prisma.ServicoAgendadoUpdateManyWithoutServicoNestedInput
@@ -504,6 +535,7 @@ export type ServicoUpdateWithoutUserInput = {
 export type ServicoUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agendamentos?: Prisma.ServicoAgendadoUncheckedUpdateManyWithoutServicoNestedInput
@@ -512,6 +544,7 @@ export type ServicoUncheckedUpdateWithoutUserInput = {
 export type ServicoUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -550,6 +583,7 @@ export type ServicoCountOutputTypeCountAgendamentosArgs<ExtArgs extends runtime.
 export type ServicoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  price?: boolean
   active?: boolean
   createdAt?: boolean
   user_id?: boolean
@@ -561,6 +595,7 @@ export type ServicoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type ServicoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  price?: boolean
   active?: boolean
   createdAt?: boolean
   user_id?: boolean
@@ -570,6 +605,7 @@ export type ServicoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ServicoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  price?: boolean
   active?: boolean
   createdAt?: boolean
   user_id?: boolean
@@ -579,12 +615,13 @@ export type ServicoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ServicoSelectScalar = {
   id?: boolean
   name?: boolean
+  price?: boolean
   active?: boolean
   createdAt?: boolean
   user_id?: boolean
 }
 
-export type ServicoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "active" | "createdAt" | "user_id", ExtArgs["result"]["servico"]>
+export type ServicoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "price" | "active" | "createdAt" | "user_id", ExtArgs["result"]["servico"]>
 export type ServicoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agendamentos?: boolean | Prisma.Servico$agendamentosArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -606,6 +643,7 @@ export type $ServicoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    price: string
     active: boolean
     createdAt: Date
     user_id: string
@@ -1036,6 +1074,7 @@ export interface Prisma__ServicoClient<T, Null = never, ExtArgs extends runtime.
 export interface ServicoFieldRefs {
   readonly id: Prisma.FieldRef<"Servico", 'String'>
   readonly name: Prisma.FieldRef<"Servico", 'String'>
+  readonly price: Prisma.FieldRef<"Servico", 'String'>
   readonly active: Prisma.FieldRef<"Servico", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Servico", 'DateTime'>
   readonly user_id: Prisma.FieldRef<"Servico", 'String'>
