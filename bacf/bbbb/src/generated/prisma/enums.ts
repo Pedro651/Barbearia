@@ -15,3 +15,25 @@ export const ROLE = {
 } as const
 
 export type ROLE = (typeof ROLE)[keyof typeof ROLE]
+
+
+export const OrderStatus = {
+  PENDENTE: 'PENDENTE',
+  PAGO: 'PAGO',
+  PROCESSANDO: 'PROCESSANDO',
+  ENVIADO: 'ENVIADO',
+  ENTREGUE: 'ENTREGUE',
+  CANCELADO: 'CANCELADO'
+} as const
+
+export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
+
+
+export const PaymentStatus = {
+  PENDENTE: 'PENDENTE',
+  APROVADO: 'APROVADO',
+  RECUSADO: 'RECUSADO',
+  ESTORNADO: 'ESTORNADO'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]

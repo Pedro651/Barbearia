@@ -236,6 +236,7 @@ export type UserWhereInput = {
   barbers?: Prisma.BarbeiroListRelationFilter
   servico?: Prisma.ServicoListRelationFilter
   horario?: Prisma.HorarioListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -256,6 +257,7 @@ export type UserOrderByWithRelationInput = {
   barbers?: Prisma.BarbeiroOrderByRelationAggregateInput
   servico?: Prisma.ServicoOrderByRelationAggregateInput
   horario?: Prisma.HorarioOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -279,6 +281,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   barbers?: Prisma.BarbeiroListRelationFilter
   servico?: Prisma.ServicoListRelationFilter
   horario?: Prisma.HorarioListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -333,6 +336,7 @@ export type UserCreateInput = {
   barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -353,6 +357,7 @@ export type UserUncheckedCreateInput = {
   barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -373,6 +378,7 @@ export type UserUpdateInput = {
   barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -393,6 +399,7 @@ export type UserUncheckedUpdateInput = {
   barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -546,6 +553,20 @@ export type UserUpdateOneRequiredWithoutProductNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProductInput, Prisma.UserUpdateWithoutProductInput>, Prisma.UserUncheckedUpdateWithoutProductInput>
 }
 
+export type UserCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.UserUpsertWithoutOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+}
+
 export type UserCreateNestedOneWithoutServicoInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutServicoInput, Prisma.UserUncheckedCreateWithoutServicoInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutServicoInput
@@ -605,6 +626,7 @@ export type UserCreateWithoutSubscriptionInput = {
   barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSubscriptionInput = {
@@ -624,6 +646,7 @@ export type UserUncheckedCreateWithoutSubscriptionInput = {
   barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSubscriptionInput = {
@@ -659,6 +682,7 @@ export type UserUpdateWithoutSubscriptionInput = {
   barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubscriptionInput = {
@@ -678,6 +702,7 @@ export type UserUncheckedUpdateWithoutSubscriptionInput = {
   barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutServicoAgendadoInput = {
@@ -697,6 +722,7 @@ export type UserCreateWithoutServicoAgendadoInput = {
   barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutServicoAgendadoInput = {
@@ -716,6 +742,7 @@ export type UserUncheckedCreateWithoutServicoAgendadoInput = {
   barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutServicoAgendadoInput = {
@@ -751,6 +778,7 @@ export type UserUpdateWithoutServicoAgendadoInput = {
   barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutServicoAgendadoInput = {
@@ -770,6 +798,7 @@ export type UserUncheckedUpdateWithoutServicoAgendadoInput = {
   barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProductInput = {
@@ -789,6 +818,7 @@ export type UserCreateWithoutProductInput = {
   barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProductInput = {
@@ -808,6 +838,7 @@ export type UserUncheckedCreateWithoutProductInput = {
   barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProductInput = {
@@ -843,6 +874,7 @@ export type UserUpdateWithoutProductInput = {
   barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProductInput = {
@@ -859,6 +891,103 @@ export type UserUncheckedUpdateWithoutProductInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   servicoAgendado?: Prisma.ServicoAgendadoUncheckedUpdateManyWithoutUserNestedInput
   subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
+  servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
+  horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOrdersInput = {
+  id?: string
+  name: string
+  email: string
+  endereco?: string | null
+  password: string
+  stripe_customer_id?: string | null
+  active?: boolean
+  avatar?: string | null
+  role?: $Enums.ROLE
+  created_at?: Date | string | null
+  updated_at?: Date | string | null
+  servicoAgendado?: Prisma.ServicoAgendadoCreateNestedManyWithoutUserInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
+  product?: Prisma.ProductCreateNestedManyWithoutUserInput
+  barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
+  servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
+  horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrdersInput = {
+  id?: string
+  name: string
+  email: string
+  endereco?: string | null
+  password: string
+  stripe_customer_id?: string | null
+  active?: boolean
+  avatar?: string | null
+  role?: $Enums.ROLE
+  created_at?: Date | string | null
+  updated_at?: Date | string | null
+  servicoAgendado?: Prisma.ServicoAgendadoUncheckedCreateNestedManyWithoutUserInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutUserInput
+  barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
+  servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
+  horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+}
+
+export type UserUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+}
+
+export type UserUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  endereco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  stripe_customer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumROLEFieldUpdateOperationsInput | $Enums.ROLE
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicoAgendado?: Prisma.ServicoAgendadoUpdateManyWithoutUserNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
+  product?: Prisma.ProductUpdateManyWithoutUserNestedInput
+  barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
+  servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
+  horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  endereco?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  stripe_customer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumROLEFieldUpdateOperationsInput | $Enums.ROLE
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  servicoAgendado?: Prisma.ServicoAgendadoUncheckedUpdateManyWithoutUserNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  product?: Prisma.ProductUncheckedUpdateManyWithoutUserNestedInput
   barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
@@ -881,6 +1010,7 @@ export type UserCreateWithoutServicoInput = {
   product?: Prisma.ProductCreateNestedManyWithoutUserInput
   barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutServicoInput = {
@@ -900,6 +1030,7 @@ export type UserUncheckedCreateWithoutServicoInput = {
   product?: Prisma.ProductUncheckedCreateNestedManyWithoutUserInput
   barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutServicoInput = {
@@ -935,6 +1066,7 @@ export type UserUpdateWithoutServicoInput = {
   product?: Prisma.ProductUpdateManyWithoutUserNestedInput
   barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutServicoInput = {
@@ -954,6 +1086,7 @@ export type UserUncheckedUpdateWithoutServicoInput = {
   product?: Prisma.ProductUncheckedUpdateManyWithoutUserNestedInput
   barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBarbersInput = {
@@ -973,6 +1106,7 @@ export type UserCreateWithoutBarbersInput = {
   product?: Prisma.ProductCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBarbersInput = {
@@ -992,6 +1126,7 @@ export type UserUncheckedCreateWithoutBarbersInput = {
   product?: Prisma.ProductUncheckedCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
   horario?: Prisma.HorarioUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBarbersInput = {
@@ -1027,6 +1162,7 @@ export type UserUpdateWithoutBarbersInput = {
   product?: Prisma.ProductUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBarbersInput = {
@@ -1046,6 +1182,7 @@ export type UserUncheckedUpdateWithoutBarbersInput = {
   product?: Prisma.ProductUncheckedUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
   horario?: Prisma.HorarioUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutHorarioInput = {
@@ -1065,6 +1202,7 @@ export type UserCreateWithoutHorarioInput = {
   product?: Prisma.ProductCreateNestedManyWithoutUserInput
   barbers?: Prisma.BarbeiroCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHorarioInput = {
@@ -1084,6 +1222,7 @@ export type UserUncheckedCreateWithoutHorarioInput = {
   product?: Prisma.ProductUncheckedCreateNestedManyWithoutUserInput
   barbers?: Prisma.BarbeiroUncheckedCreateNestedManyWithoutUserInput
   servico?: Prisma.ServicoUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHorarioInput = {
@@ -1119,6 +1258,7 @@ export type UserUpdateWithoutHorarioInput = {
   product?: Prisma.ProductUpdateManyWithoutUserNestedInput
   barbers?: Prisma.BarbeiroUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHorarioInput = {
@@ -1138,6 +1278,7 @@ export type UserUncheckedUpdateWithoutHorarioInput = {
   product?: Prisma.ProductUncheckedUpdateManyWithoutUserNestedInput
   barbers?: Prisma.BarbeiroUncheckedUpdateManyWithoutUserNestedInput
   servico?: Prisma.ServicoUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1151,6 +1292,7 @@ export type UserCountOutputType = {
   barbers: number
   servico: number
   horario: number
+  orders: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1159,6 +1301,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   barbers?: boolean | UserCountOutputTypeCountBarbersArgs
   servico?: boolean | UserCountOutputTypeCountServicoArgs
   horario?: boolean | UserCountOutputTypeCountHorarioArgs
+  orders?: boolean | UserCountOutputTypeCountOrdersArgs
 }
 
 /**
@@ -1206,6 +1349,13 @@ export type UserCountOutputTypeCountHorarioArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.HorarioWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1225,6 +1375,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   barbers?: boolean | Prisma.User$barbersArgs<ExtArgs>
   servico?: boolean | Prisma.User$servicoArgs<ExtArgs>
   horario?: boolean | Prisma.User$horarioArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1278,6 +1429,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   barbers?: boolean | Prisma.User$barbersArgs<ExtArgs>
   servico?: boolean | Prisma.User$servicoArgs<ExtArgs>
   horario?: boolean | Prisma.User$horarioArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1292,6 +1444,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     barbers: Prisma.$BarbeiroPayload<ExtArgs>[]
     servico: Prisma.$ServicoPayload<ExtArgs>[]
     horario: Prisma.$HorarioPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1705,6 +1858,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   barbers<T extends Prisma.User$barbersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$barbersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BarbeiroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   servico<T extends Prisma.User$servicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$servicoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   horario<T extends Prisma.User$horarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$horarioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HorarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2274,6 +2428,30 @@ export type User$horarioArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.HorarioScalarFieldEnum | Prisma.HorarioScalarFieldEnum[]
+}
+
+/**
+ * User.orders
+ */
+export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
 }
 
 /**

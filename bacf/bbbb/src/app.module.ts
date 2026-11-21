@@ -13,6 +13,10 @@ import { ProductModule } from './product/product.module.js';
 import { BarbeiroModule } from './barbeiro/barbeiro.module.js';
 import { ServicoModule } from './servico/servico.module.js';
 import { HorarioModule } from './horario/horario.module.js';
+import { OrderModule } from './order/order.module.js';
+import { PaymenteModule } from './payment/payment.module.js';
+import { StatisticsModule } from './statistics/statistics.module.js';
+
 
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
@@ -26,7 +30,10 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     ScheduleModule,
     BarbeiroModule,
     ServicoModule,
+    PaymenteModule,
     HorarioModule,
+    StatisticsModule,
+    OrderModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'file'),
       serveRoot: "/files"

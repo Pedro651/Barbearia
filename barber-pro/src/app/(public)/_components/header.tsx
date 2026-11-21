@@ -91,6 +91,13 @@ const router = useRouter();
               >
                 Agenda
               </Link>
+              <Link
+                href="/estatisticas"
+                className="text-xs font-semibold hover:text-yellow-700"
+              >
+                Estatisticas
+              </Link>
+              
             </>
           )}
         </nav>
@@ -130,6 +137,7 @@ const router = useRouter();
     >
       Agendar
     </Link>
+    
   </div>
 
           {/* Menu do celular */}
@@ -189,6 +197,7 @@ const router = useRouter();
     >
       Entrar
     </Link>
+    
 
     {/* Menu administrativo */}
     {montado && user?.role === "ADMIN" && (
@@ -215,6 +224,13 @@ const router = useRouter();
           className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
         >
           Agenda
+        </Link>
+        <Link
+          href="/estatisticas"
+          onClick={fecharMenu}
+          className="flex min-h-12 items-center text-sm font-semibold hover:text-yellow-700"
+        >
+          Estatisticas
         </Link>
       </div>
     )}

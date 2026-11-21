@@ -55,6 +55,9 @@ export const ModelName = {
   Subscription: 'Subscription',
   ServicoAgendado: 'ServicoAgendado',
   Product: 'Product',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
+  Payment: 'Payment',
   Servico: 'Servico',
   Barbeiro: 'Barbeiro',
   Horario: 'Horario'
@@ -127,12 +130,57 @@ export const ProductScalarFieldEnum = {
   avatar: 'avatar',
   description: 'description',
   price: 'price',
+  stock: 'stock',
+  active: 'active',
   created_at: 'created_at',
   updated_at: 'updated_at',
   user_id: 'user_id'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  total: 'total',
+  status: 'status',
+  trackingCode: 'trackingCode',
+  shippingCarrier: 'shippingCarrier',
+  shippedAt: 'shippedAt',
+  deliveredAt: 'deliveredAt',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  productName: 'productName',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  stripeSessionId: 'stripeSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
+  amount: 'amount',
+  currency: 'currency',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
 export const ServicoScalarFieldEnum = {

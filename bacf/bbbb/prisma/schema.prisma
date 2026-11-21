@@ -12,6 +12,22 @@ enum ROLE {
   CLIENTE
 }
 
+enum OrderStatus{
+  PENDENTE
+  PAGO
+  PROCESSANDO
+  ENVIADO
+  ENTREGUE
+  CANCELADO
+}
+
+enum PaymentStatus{
+  PENDENTE 
+  APROVADO
+  RECUSADO 
+  ESTORNADO
+}
+
 model User {
   id                 String        @id @default(uuid())
   name               String
@@ -30,6 +46,9 @@ model User {
   barbers Barbeiro[]
   servico Servico[]
   horario Horario[]
+
+  orders  Order[]
+
   @@map("users")
 }
 
@@ -81,13 +100,71 @@ model Product{
   avatar     String
   description String
   price       String
+
+  stock      Int       @default(0)
+  active     Boolean   @default(true)
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
   user_id   String
   user User @relation(fields: [user_id] ,references:[id])
 
+  items      OrderItem[]
 
+
+}
+
+model Order{
+  id  String @id @default(uuid())
+  total  Decimal @db.Decimal(10,2)
+  status   OrderStatus @default(PENDENTE)
+
+  trackingCode   String?
+  shippingCarrier String?
+  shippedAt      DateTime?
+  deliveredAt    DateTime?
+
+  userId    String
+  user      User        @relation(fields: [userId], references: [id])
+
+  items     OrderItem[]
+  payments  Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrderItem {
+  id          String   @id @default(uuid())
+
+  orderId     String
+  productId   String
+
+  productName String
+  quantity    Int
+  unitPrice   Decimal  @db.Decimal(10, 2)
+
+  order       Order    @relation(fields: [orderId], references: [id])
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+model Payment {
+  id                     String        @id @default(uuid())
+
+  orderId                String
+
+  stripeSessionId        String?       @unique
+  stripePaymentIntentId  String?       @unique
+
+  // Valor em centavos
+  amount                 Int
+  currency               String        @default("brl")
+  status                 PaymentStatus @default(PENDENTE)
+
+  order                  Order         @relation(fields: [orderId], references: [id])
+
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
 }
 
 
