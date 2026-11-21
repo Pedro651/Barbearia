@@ -1,8 +1,8 @@
 # 💈 Soares Barbearia — Sistema Web
 
-Sistema web desenvolvido para a **Soares Barbearia**, com o objetivo de modernizar a experiência dos clientes e facilitar o gerenciamento dos serviços, produtos, usuários e agendamentos.
+Sistema web desenvolvido para a **Soares Barbearia**, com o objetivo de modernizar a experiência dos clientes e facilitar o gerenciamento dos serviços, produtos, usuários, agendamentos e vendas.
 
-A plataforma conta com uma vitrine de produtos, sistema de agendamento online e painel administrativo com controle de acesso por nível de permissão.
+A plataforma conta com uma vitrine de produtos, sistema de agendamento online, integração com pagamentos online e painel administrativo com controle de acesso por nível de permissão.
 
 ## 🚀 Tecnologias utilizadas
 
@@ -15,16 +15,19 @@ A plataforma conta com uma vitrine de produtos, sistema de agendamento online e 
 - **PostgreSQL** — Banco de dados relacional.
 - **JWT** — Autenticação e gerenciamento de sessões.
 - **Axios** — Comunicação entre frontend e backend.
+- **Stripe** — Integração com sistema de pagamentos online.
 
 ## ✨ Funcionalidades
 
 ### 👤 Área do cliente
+
 - Cadastro e autenticação de usuários.
 - Login com autenticação JWT.
 - Visualização dos serviços disponíveis.
 - Agendamento de serviços com barbeiros.
 - Visualização de produtos disponíveis.
-- Carrinho de compras sem integração de pagamento.
+- Carrinho de compras.
+- Finalização de compras com pagamento online via Stripe.
 - Acesso às informações da barbearia.
 
 ### 🔐 Painel administrativo
@@ -36,9 +39,24 @@ Funcionalidades restritas a usuários com perfil de administrador (ADMIN).
 - Exclusão de contas cadastradas.
 - Gerenciamento de produtos (criar, editar e excluir).
 - Gerenciamento de serviços (criar, editar e excluir).
+- Visualização dos pedidos realizados pelos clientes.
+- Gerenciamento e atualização do status dos pedidos.
 - Visualização dos agendamentos realizados pelos clientes.
 - Filtragem e consulta de agendamentos.
-- Gerenciamento das informações da plataforma.
+- Acompanhamento das estatísticas de vendas e faturamento.
+- Visualização do faturamento total.
+- Gráficos de evolução do faturamento, permitindo acompanhar subidas e descidas das vendas.
+- Análise do desempenho financeiro da plataforma.
+
+### 📊 Sistema de estatísticas e faturamento
+
+O painel administrativo possui uma área dedicada ao acompanhamento financeiro, permitindo:
+
+- Consultar o resumo geral das vendas.
+- Visualizar o faturamento da plataforma.
+- Acompanhar a evolução das vendas por meio de gráficos.
+- Identificar períodos de crescimento e queda no faturamento.
+- Analisar o desempenho financeiro da loja.
 
 ### 🛡️ Segurança e controle de acesso
 
@@ -48,18 +66,21 @@ Funcionalidades restritas a usuários com perfil de administrador (ADMIN).
 - Validação de dados no backend.
 - Configuração de CORS.
 - Gerenciamento de sessões de usuários.
+- Integração segura com o Stripe para processamento de pagamentos.
 
-## 🛍️ Mini loja
+## 🛍️ Mini loja virtual
 
-A plataforma possui uma pequena loja virtual para apresentar os produtos disponíveis na barbearia.
+A plataforma possui uma loja virtual para apresentar os produtos disponíveis na barbearia.
 
-Os clientes podem visualizar os produtos e adicioná-los ao carrinho, porém **não existe integração com gateways de pagamento ou finalização de compras online**.
+Os clientes podem visualizar os produtos, adicioná-los ao carrinho e realizar compras online por meio da integração com o Stripe.
+
+O sistema permite que os pedidos sejam registrados e posteriormente gerenciados pelo painel administrativo.
 
 ## 📅 Sistema de agendamentos
 
 Os clientes podem realizar agendamentos escolhendo serviços, barbeiros, datas e horários disponíveis.
 
-Os administradores possuem acesso ao gerenciamento dos agendamentos, podendo consultar e filtrar os registros.
+Os administradores possuem acesso ao gerenciamento dos agendamentos, podendo consultar, filtrar e acompanhar os registros.
 
 ## ⚙️ Instalação e execução
 
@@ -75,7 +96,7 @@ Instale as dependências do frontend e backend:
 npm install
 ```
 
-Configure as variáveis de ambiente no arquivo `.env`.
+Configure as variáveis de ambiente nos arquivos `.env`.
 
 Execute as migrações do Prisma:
 
