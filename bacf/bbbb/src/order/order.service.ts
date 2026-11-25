@@ -124,7 +124,8 @@ export class OrderService{
 }
 
     async updateOrderStatus( id: string,updateOrderStatusDto: UpdateOrderStatusDto,tokenPayload: PAyloadTOkenDto ){
-        if (tokenPayload.role !== 'ADMIN') {
+    
+    if (tokenPayload.role !== 'ADMIN') {
         throw new ForbiddenException(
             'Somente administradores podem atualizar o status'
         );
@@ -148,6 +149,7 @@ export class OrderService{
 
 
     async cancelOrder(id: string,tokenPayload: PAyloadTOkenDto){
+    
     if (tokenPayload.role !== 'ADMIN') {
         throw new ForbiddenException(
             'Somente administradores podem cancelar pedidos'

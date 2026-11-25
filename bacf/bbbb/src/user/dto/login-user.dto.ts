@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class LoginDto {
   @IsEmail()
@@ -6,4 +6,9 @@ export class LoginDto {
 
   @IsNotEmpty()
   password: string;
+
+  // ADICIONADO: token do Google CAPTCHA.
+  @IsString()
+  @IsNotEmpty()
+  captchaToken: string;
 }

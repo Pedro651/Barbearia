@@ -18,7 +18,12 @@ export class UserService{
     ){}
 
    
+// Cadastro de usuário.
 async create(createUserDto: CreateUserDto) {
+
+  // ADICIONADO: valida o CAPTCHA antes de criar o usuário.
+  await this.validarCaptcha(createUserDto.captchaToken);
+
   try {
     const passwordHash = await this.hashingService.hash(
       createUserDto.password,
@@ -42,7 +47,6 @@ async create(createUserDto: CreateUserDto) {
   } catch (err) {
     console.error("Erro real ao cadastrar usuário:", err);
 
-    // E-mail já cadastrado
     if (
       typeof err === "object" &&
       err !== null &&
@@ -55,7 +59,6 @@ async create(createUserDto: CreateUserDto) {
       );
     }
 
-    // Outros erros: não esconda a causa original nos logs
     throw new HttpException(
       "Não foi possível cadastrar o usuário",
       HttpStatus.INTERNAL_SERVER_ERROR,
@@ -63,10 +66,60 @@ async create(createUserDto: CreateUserDto) {
   }
 }
 
-    
+// ADICIONADO: valida o CAPTCHA do cadastro com o Google.
+private async validarCaptcha(captchaToken: string): Promise<void> {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
 
+  if (!secret) {
+    throw new HttpException(
+      "A chave secreta do CAPTCHA não foi configurada.",
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
+  }
 
+  if (!captchaToken) {
+    throw new UnauthorizedException(
+      "Confirme que você não é um robô.",
+    );
+  }
 
+  try {
+    const resposta = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          secret,
+          response: captchaToken,
+        }),
+      },
+    );
+
+    const resultado = await resposta.json();
+
+    if (!resposta.ok || resultado.success !== true) {
+      console.error("CAPTCHA inválido:", resultado);
+
+      throw new UnauthorizedException(
+        "CAPTCHA inválido ou expirado. Tente novamente.",
+      );
+    }
+  } catch (error) {
+    if (error instanceof UnauthorizedException) {
+      throw error;
+    }
+
+    console.error("Erro ao validar CAPTCHA:", error);
+
+    throw new HttpException(
+      "Não foi possível validar o CAPTCHA.",
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
+  }
+}
     
     //Vou trocar ainda
     async update(id:string, updateUser:UpdateUserDto, tokenPayLoad:PAyloadTOkenDto){
@@ -120,11 +173,6 @@ async create(createUserDto: CreateUserDto) {
       }
     }
     
-
-
-
-    //Troca a senha pelo gmail ou no site
-    //Autenticação de 2FA
 
     async uploadAvatarImage(tokenPayLoad:PAyloadTOkenDto, file:Express.Multer.File){
       try{

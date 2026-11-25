@@ -12,11 +12,6 @@ export class AuthController{
         private readonly authService: AuthService
     ){}
 
-    @Post('login')
-    sigIn(@Body() sigInDto:SignInDto){
-        return this.authService.authenticate(sigInDto)
-    }
-
     @UseGuards(AuthTokenGard)
     @Get('pegar')
     userget(
@@ -29,6 +24,24 @@ export class AuthController{
     @Get('getTodas')
     pegarTodasContas() {
       return this.authService.getContas();
+    }
+    @Post('login')
+    login(@Body() dto: {
+      email: string;
+      password: string;
+      captchaToken: string; // ADICIONADO: token do CAPTCHA
+    }) {
+      // ADICIONADO: envia o token para o AuthService validar.
+      return this.authService.login(
+        dto.email,
+        dto.password,
+        dto.captchaToken
+      );
+    }
+
+    @Post('2fa/verify')
+    verify(@Body() dto: { challengeId: string; code: string }) {
+      return this.authService.verify2fa(dto.challengeId, dto.code);
     }
 
     

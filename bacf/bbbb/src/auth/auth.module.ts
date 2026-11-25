@@ -1,33 +1,48 @@
 import { Global, Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { JwtModule } from "@nestjs/jwt";
+import { BullModule } from "@nestjs/bullmq";
+
 import { HashingServiceProtocol } from "./hash/hashing.service.js";
 import { BcryptService } from "./hash/bcrypt.service.js";
 import { AuthService } from "./auth.service.js";
 import { AuthController } from "./auth.controller.js";
 import { PrismaModule } from "../prisma/prisma.module.js";
-import { ConfigModule } from "@nestjs/config";
 import jwtConfig from "./config/jwt.config.js";
-import {JwtModule} from "@nestjs/jwt"
+import { TwoFactorService } from "./two-factor.service.js";
+import { MailProcessor } from "../mail/mail.processor.js";
 
 @Global()
 @Module({
-  imports:[
+  imports: [
     PrismaModule,
+
     ConfigModule.forFeature(jwtConfig),
-    JwtModule.registerAsync(jwtConfig.asProvider())
+
+    JwtModule.registerAsync(jwtConfig.asProvider()),
+
+    BullModule.registerQueue({
+      name: "mail",
+    }),
   ],
+
   providers: [
     {
-        provide:HashingServiceProtocol,
-        useClass:BcryptService
+      provide: HashingServiceProtocol,
+      useClass: BcryptService,
     },
-    AuthService
+    AuthService,
+    TwoFactorService,
+    MailProcessor,
   ],
-  exports:[
+
+  exports: [
     HashingServiceProtocol,
     JwtModule,
-    ConfigModule
+    ConfigModule,
+    TwoFactorService,
   ],
+
   controllers: [AuthController],
-  
 })
 export class AuthModule {}

@@ -20,4 +20,9 @@ export class CreateUserDto{
     @IsString()
     @IsNotEmpty({message:"Não pode deixar vazio"})
     password:string 
+
+    // ADICIONADO: token do Google CAPTCHA.
+    @IsString()
+    @IsNotEmpty()
+    captchaToken: string;
 }

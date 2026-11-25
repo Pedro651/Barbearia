@@ -16,13 +16,30 @@ import { HorarioModule } from './horario/horario.module.js';
 import { OrderModule } from './order/order.module.js';
 import { PaymenteModule } from './payment/payment.module.js';
 import { StatisticsModule } from './statistics/statistics.module.js';
+import { RedisModule } from './redis/redis.module.js';
 
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { BullModule } from '@nestjs/bullmq';
+import { MailModule } from './mail/mail.module.js';
 
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
+
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+
+    BullModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        connection: {
+          host: config.get<string>('REDIS_HOST', '127.0.0.1'),
+          port: Number(config.get('REDIS_PORT', 6379)),
+        },
+      }),
+    }),
+
     PrismaModule,
     UsersModule,
     AuthModule,
@@ -32,12 +49,14 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     ServicoModule,
     PaymenteModule,
     HorarioModule,
+    MailModule,
     StatisticsModule,
+    RedisModule,
     OrderModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'file'),
-      serveRoot: "/files"
-    })
+      serveRoot: '/files',
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

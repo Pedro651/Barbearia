@@ -31,6 +31,7 @@ export class PaymenteController {
         @Param("orderId") orderId: string,
         @TokenPayloadParam() tokenPayload: PAyloadTOkenDto
     ) {
+        // Solicita a criação do pagamento para o pedido
         return this.paymentService.createPayment(
             orderId,
             tokenPayload.sub
@@ -43,12 +44,14 @@ export class PaymenteController {
         @Param("id") id: string,
         @TokenPayloadParam() tokenPayload: PAyloadTOkenDto
     ) {
+        // Busca o pagamento pelo ID e pelo usuário.
         return this.paymentService.buscarPagamento(
             id,
             tokenPayload.sub
         );
     }
 
+    //Webhook: é uma forma de um sistema avisar automaticamente outro sistema quando acontece alguma coisa.
     @Post("webhook")
     webhook(
         @Req() req: RawBodyRequest<Request>,

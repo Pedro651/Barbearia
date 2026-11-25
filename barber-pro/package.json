@@ -18,6 +18,7 @@
     "nookies": "^2.5.2",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "react-google-recaptcha": "^3.1.0",
     "recharts": "^3.11.0",
     "shadcn": "^4.21.4",
     "sweetalert2": "^11.26.25",
@@ -28,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-google-recaptcha": "^2.1.9",
     "babel-plugin-react-compiler": "1.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
