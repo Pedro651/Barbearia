@@ -16,6 +16,8 @@ A plataforma conta com uma vitrine de produtos, sistema de agendamento online, i
 - **JWT** — Autenticação e gerenciamento de sessões.
 - **Axios** — Comunicação entre frontend e backend.
 - **Stripe** — Integração com sistema de pagamentos online.
+- **Google reCAPTCHA** — Proteção contra bots e tentativas automatizadas.
+- **Nodemailer / SMTP** — Envio de notificações e códigos de autenticação por e-mail.
 
 ## ✨ Funcionalidades
 
@@ -23,6 +25,11 @@ A plataforma conta com uma vitrine de produtos, sistema de agendamento online, i
 
 - Cadastro e autenticação de usuários.
 - Login com autenticação JWT.
+- Proteção de login com CAPTCHA.
+- Autenticação de dois fatores (2FA) por e-mail.
+- Recebimento de códigos de verificação por e-mail.
+- Recuperação e redefinição de senha.
+- Notificações por e-mail sobre eventos e atividades da conta.
 - Visualização dos serviços disponíveis.
 - Agendamento de serviços com barbeiros.
 - Visualização de produtos disponíveis.
@@ -61,6 +68,11 @@ O painel administrativo possui uma área dedicada ao acompanhamento financeiro, 
 ### 🛡️ Segurança e controle de acesso
 
 - Autenticação baseada em JWT.
+- CAPTCHA para proteção contra acessos automatizados.
+- Autenticação de dois fatores (2FA).
+- Envio de códigos de verificação por e-mail.
+- Notificações por e-mail relacionadas à segurança e à conta do usuário.
+- Recuperação e redefinição de senha.
 - Controle de acesso por níveis de permissão (ADMIN e CLIENTE).
 - Proteção de rotas administrativas.
 - Validação de dados no backend.
